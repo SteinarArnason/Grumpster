@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Friend"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
+        android:textSize="30dp" />
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        >
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/friendUsername"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="20dp"
+            android:hint="Friend's Username"
+            android:layout_toStartOf="@+id/addButton"
+            android:layout_alignParentBottom="false" />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:layout_marginTop="20dp"
+            android:layout_alignParentRight="true"
+            android:id="@+id/addButton"
+            android:layout_alignParentTop="false"
+            android:layout_alignBottom="@+id/friendUsername" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My friends"
+        android:layout_gravity="left"
+        android:paddingLeft="10dp"
+        android:layout_marginTop="40dp"
+        android:textSize="20dp" />
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/friends"
+        />
+</LinearLayout>
