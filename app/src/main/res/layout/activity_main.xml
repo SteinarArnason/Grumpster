@@ -23,11 +23,22 @@
     <ImageButton
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:id="@+id/imageButton"
+        android:id="@+id/prefsButton"
         android:layout_gravity="right"
         android:layout_alignParentRight="true"
-        android:src="@drawable/grumpsterlogo"
+        android:src="@drawable/person"
+        android:onClick="menuClick"
         android:layout_margin="10dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="gotoprefs"
+        android:id="@+id/button"
+        android:onClick="menuClick"
+
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
 
 <TextView
@@ -36,7 +47,6 @@
     android:gravity="center"
     android:layout_height="0dp"
     android:layout_weight="0.5"
-    android:background="@android:color/holo_red_dark"
     android:backgroundTint="@color/button_material_light" />
 
 
