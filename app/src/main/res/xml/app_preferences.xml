@@ -1,5 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="Settings"/>
-    <bool name="loggedIn">false</bool>>
+
+    <CheckBoxPreference
+        android:title="Sound"
+        android:summary="Turn in app sounds on or off"
+        android:key="soundCheck"
+        android:defaultValue="true" />
+    <ListPreference
+        android:key="colorTheme"
+        android:title="Color Theme"
+        android:summary="Current theme: %s"
+        android:entries="@array/listentries"
+        android:entryValues="@array/listvalues"
+        android:defaultValue="Light"
+        />
+    <SwitchPreference
+        android:title="User Picture"
+        android:summary="Switch user icon"
+        android:key="userIcon"
+        android:defaultValue="false"
+        />
 </PreferenceScreen>
