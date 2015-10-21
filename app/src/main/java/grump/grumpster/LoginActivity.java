@@ -91,4 +91,45 @@ public class LoginActivity extends Activity {
         });
         Volley.newRequestQueue(this).add(req);
     }
+
+    public void signupHttp(View view){
+        String username = "steinar";
+        String password = "adidas";
+        String URL = "http://ilovemetech.com/api/users";
+
+
+        JSONObject myobj = null;
+        try {
+            myobj = new JSONObject().put("username",username);
+            myobj.put("password", password);
+            System.out.println(myobj.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        System.out.println(myobj.toString());
+
+
+        JsonObjectRequest req = new JsonObjectRequest(URL, myobj,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            System.out.println("Response is : ");
+                            System.out.println(response.toString());
+                            VolleyLog.v("Response:%n %s", response.toString(4));
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                System.out.println(error.getMessage());
+                VolleyLog.e(" !!! Error: ", error.getMessage());
+            }
+        });
+        Volley.newRequestQueue(this).add(req);
+
+    }
 }
+

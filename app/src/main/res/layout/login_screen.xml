@@ -44,5 +44,6 @@
         android:text="Sign up"
         android:id="@+id/signup"
         android:layout_gravity="center"
+        android:onClick="signupHttp"
         />
 </LinearLayout>
