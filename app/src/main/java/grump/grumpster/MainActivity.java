@@ -51,8 +51,11 @@ public class MainActivity extends LoginActivity {
         if (view.getId() == R.id.prefsButton) {
             Intent intent = new Intent(this, PreferencesActivity.class);
             startActivity(intent);
-        } else if (view.getId() == R.id.addFriends){
+        } else if (view.getId() == R.id.addFriends) {
             Intent intent = new Intent(this, FriendActivity.class);
+            startActivity(intent);
+        } else if (view.getId() == R.id.addGroup) {
+            Intent intent = new Intent(this, GroupActivity.class);
             startActivity(intent);
         }
     }
