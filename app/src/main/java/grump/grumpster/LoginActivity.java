@@ -51,20 +51,32 @@ public class LoginActivity extends Activity {
 
     public void loginHttp(View view){
         System.out.println("heheh http hehehe");
-        String URL = "http://localhost/8000/kristinn";
+        String URL = "http://ilovemetech.com/api/users/kristinn";
         final JSONObject jsonBody;
         try {
-            jsonBody = new JSONObject("{\"password\":\"api123123\"}");
+            System.out.println("Trying to add password to body");
+            jsonBody = new JSONObject().put("password", "api123123");
         } catch (JSONException e) {
+            System.out.println("VILLLLLLAAA ATH ATH ATH");
             e.printStackTrace();
         }
         HashMap<String, String> params = new HashMap<String, String>();
-
-        JsonObjectRequest req = new JsonObjectRequest(URL, new JSONObject(params),
+        //params.put("password", "api123123");
+        JSONObject myobj = null;
+        try {
+            myobj = new JSONObject().put("password","api123123");
+            //System.out.println(myobj.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        System.out.println(myobj.toString());
+        JsonObjectRequest req = new JsonObjectRequest(URL, myobj,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
                         try {
+                            System.out.println("Response is : ");
+                            System.out.println(response.toString());
                             VolleyLog.v("Response:%n %s", response.toString(4));
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -73,7 +85,8 @@ public class LoginActivity extends Activity {
                 }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                VolleyLog.e("Perror: ", error.getMessage());
+                System.out.println(error.getMessage());
+                VolleyLog.e(" !!! Error: ", error.getMessage());
             }
         });
         Volley.newRequestQueue(this).add(req);
