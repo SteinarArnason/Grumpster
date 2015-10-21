@@ -34,21 +34,27 @@ public class MainActivity extends LoginActivity {
 
     }
 
+    // checks if user has changed the icon in preference screen
     private void checkUserIcon() {
         ImageView image = (ImageView) findViewById(R.id.prefsButton);
         boolean girl = sp.getBoolean("userIcon", true);
 
         if (girl) {
-            System.out.println("Its a girl!");
             image.setImageResource(R.drawable.person2);
         } else {
             image.setImageResource(R.drawable.person);
         }
     }
 
-    public void settings(View view) {
-        Intent intent = new Intent(this, PreferencesActivity.class);
-        startActivity(intent);
+    // monitors clicks in activity_main
+    public void menuClick(View view) {
+        if (view.getId() == R.id.prefsButton) {
+            Intent intent = new Intent(this, PreferencesActivity.class);
+            startActivity(intent);
+        } else if (view.getId() == R.id.addFriends){
+            System.out.println("should go now to activity friend");
+            Intent intent = new Intent(this, FriendActivity.class);
+            startActivity(intent);
+        }
     }
-
 }

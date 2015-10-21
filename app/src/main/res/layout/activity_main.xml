@@ -26,7 +26,7 @@
         android:id="@+id/prefsButton"
         android:layout_gravity="right"
         android:layout_alignParentRight="true"
-        android:onClick="settings"
+        android:onClick="menuClick"
         android:src="@drawable/person"
         android:layout_margin="10dp" />
 
@@ -221,7 +221,8 @@
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
                     android:src="@drawable/friends"
-                    />
+                    android:id="@+id/addFriends"
+                    android:onClick="menuClick" />
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="0dp"
