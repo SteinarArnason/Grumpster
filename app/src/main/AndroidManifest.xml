@@ -24,6 +24,9 @@
             android:name=".PreferencesActivity"
             android:label="@string/title_activity_preferences" >
         </activity>
+        <activity
+            android:name=".FriendActivity">
+        </activity>
     </application>
 
 </manifest>

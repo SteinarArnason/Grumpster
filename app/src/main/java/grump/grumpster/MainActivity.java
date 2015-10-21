@@ -46,13 +46,12 @@ public class MainActivity extends LoginActivity {
         }
     }
 
-    // monitors clicks in activity_main
+    // monitors clicks in activity_main layout
     public void menuClick(View view) {
         if (view.getId() == R.id.prefsButton) {
             Intent intent = new Intent(this, PreferencesActivity.class);
             startActivity(intent);
         } else if (view.getId() == R.id.addFriends){
-            System.out.println("should go now to activity friend");
             Intent intent = new Intent(this, FriendActivity.class);
             startActivity(intent);
         }
