@@ -190,12 +190,13 @@
     </RelativeLayout>
 
     <TextView
-        android:text="Add more friends"
+        android:text="Add"
         android:layout_width="fill_parent"
         android:gravity="center"
         android:layout_height="0dp"
         android:layout_weight="0.5"
-        android:backgroundTint="@color/button_material_light" />
+        android:backgroundTint="@color/button_material_light"
+        />
 
     <RelativeLayout
         android:layout_width="fill_parent"
@@ -213,13 +214,13 @@
                 android:layout_height="fill_parent">
 
                 <ImageView
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="10dp"
-                    android:src="@drawable/grumpsterlogo"
+                    android:src="@drawable/friends"
                     />
             </RelativeLayout>
             <RelativeLayout
@@ -227,24 +228,16 @@
                 android:layout_weight="1"
                 android:layout_height="fill_parent">
 
-                <ImageView
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:src="@drawable/grumpsterlogo"
-                    />
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="fill_parent">
 
+
                 <ImageView
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
                     android:layout_marginTop="10dp"
@@ -253,9 +246,5 @@
                     />
             </RelativeLayout>
         </LinearLayout>
-
-
     </RelativeLayout>
-
-
 </LinearLayout>
