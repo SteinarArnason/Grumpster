@@ -30,15 +30,24 @@
         android:src="@drawable/person"
         android:layout_margin="10dp" />
 
-    <Button
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="gotoprefs"
-        android:id="@+id/button"
-        android:onClick="menuClick"
-
-        android:layout_centerVertical="true"
+        android:text="Welcome GrumpyPerson"
+        android:id="@+id/textView"
+        android:layout_alignTop="@+id/Logo"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:id="@+id/logoutButton"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:onClick="logout" />
+
+
 </RelativeLayout>
 
 <TextView

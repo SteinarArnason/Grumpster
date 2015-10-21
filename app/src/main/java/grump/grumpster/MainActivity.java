@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 
 public class MainActivity extends LoginActivity {
 
@@ -28,6 +29,20 @@ public class MainActivity extends LoginActivity {
         }
         else {
             System.out.println("You are logged in.");
+        }
+        checkUserIcon();
+
+    }
+
+    private void checkUserIcon() {
+        ImageView image = (ImageView) findViewById(R.id.prefsButton);
+        boolean girl = sp.getBoolean("userIcon", true);
+
+        if (girl) {
+            System.out.println("Its a girl!");
+            image.setImageResource(R.drawable.person2);
+        } else {
+            image.setImageResource(R.drawable.person);
         }
     }
 
