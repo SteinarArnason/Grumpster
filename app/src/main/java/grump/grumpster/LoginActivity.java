@@ -87,9 +87,9 @@ public class LoginActivity extends MainActivity {
                 @Override
                 public void onErrorResponse(VolleyError error) {
                     System.out.println("Login Failed");
-                    //error.networkResponse.statusCode
                 }
             });
+        //error.networkResponse.statusCode
         Volley.newRequestQueue(this).add(req);
     }
 }
