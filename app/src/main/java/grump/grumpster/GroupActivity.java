@@ -18,58 +18,42 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by Gunnar on 21-Oct-15.
- */
 public class GroupActivity extends Activity {
 
     String [] items;
     ArrayList<String> listItems;
     ArrayAdapter<String> adapter;
     ListView listView;
-    EditText editText;
+    EditText myFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.creategroup_screen);
         listView = (ListView)findViewById(R.id.listview);
-        editText = (EditText)findViewById(R.id.txtsearch);
+        myFilter = (EditText)findViewById(R.id.txtsearch);
+
+        listView.setTextFilterEnabled(true);
 
         listView.setOnItemClickListener(new ItemList());    //listens for click in userlist
         initList();
-        editText.addTextChangedListener(new TextWatcher() {
+
+        myFilter.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int i, int i1, int i2) {
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
             }
 
             @Override
             public void onTextChanged(CharSequence s, int i, int i1, int i2) {
-                if(listItems.toString().equals("")) {
-                    // reset listview
-                    initList();
-                } else {
-                    // perform search
-                    searchItem(s.toString());
-                }
+                adapter.getFilter().filter(s.toString());
             }
 
             @Override
-            public void afterTextChanged(Editable s) {
+            public void afterTextChanged(Editable editable) {
 
             }
         });
-    }
-
-    public void searchItem(String textToSearch) {
-        for(String item: items) {
-            if(!item.contains(textToSearch)) {
-                listItems.remove(item);
-            }
-        }
-
-        adapter.notifyDataSetChanged();
     }
 
     public void initList() {
@@ -99,10 +83,6 @@ public class GroupActivity extends Activity {
             Toast.makeText(GroupActivity.this, tv.getText().toString(), Toast.LENGTH_SHORT).show(); // here should we add the user to group...
         }
     }
-
-
-
-
 }
 
 
