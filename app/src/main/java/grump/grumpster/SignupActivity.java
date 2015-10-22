@@ -1,82 +1,55 @@
 package grump.grumpster;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
-import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class LoginActivity extends MainActivity {
+public class SignupActivity extends MainActivity {
     private EditText user;
     private EditText password;
+    private EditText email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login_screen);
+        setContentView(R.layout.signup_screen);
 
         user = (EditText) findViewById( R.id.username );
         password = (EditText) findViewById( R.id.password );
+        email = (EditText) findViewById( R.id.email );
     }
 
     @Override
     protected void onResume() {
-
-        if(sp.getBoolean("loggedIn", false)) {
-            System.out.println("You are logged in.");
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
-            finish();
-        }
         super.onResume();
     }
 
-    @Override
-    public void onBackPressed() {
-        Intent intent = new Intent(Intent.ACTION_MAIN);
-        intent.addCategory(Intent.CATEGORY_HOME);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
-    }
-
-    public void signup(View view) {
-        Intent intent = new Intent(this, SignupActivity.class);
-        startActivity(intent);
-    }
-
-    public void loginHttp(final View view){
+    public void signupHttp(final View view){
         String uName = user.getText().toString();
         String pWord = password.getText().toString();
-
-        /**Harðkóðuð gögn til að auto logga sig inn (Þarf samt að ýta á login)*/
-        //uName = "steinar";
-        //pWord = "adidas";
-
-        System.out.println("Function: loginHTTP");
-        System.out.println("Username: " + uName + " -> Password: " + pWord);
+        String eMail = password.getText().toString();
 
         JSONObject myobj = new JSONObject();
         try {
+            myobj.put("username", uName);
             myobj.put("password", pWord);
+            myobj.put("email", eMail);
         } catch (JSONException e) {
-            System.out.println("Error: Password object error (Login).");
+            System.out.println("Error: User object error (Signup).");
             e.printStackTrace();
         }
 
-        JsonObjectRequest req = new JsonObjectRequest(APIprefix + "users/" + uName, myobj,
+
+        JsonObjectRequest req = new JsonObjectRequest(APIprefix + "users/", myobj,
             new Response.Listener<JSONObject>() {
                 @Override
                 public void onResponse(JSONObject response) {
@@ -86,11 +59,10 @@ public class LoginActivity extends MainActivity {
             new Response.ErrorListener() {
                 @Override
                 public void onErrorResponse(VolleyError error) {
-                    System.out.println("Login Failed");
+                    System.out.println("Signup Failed");
                     //error.networkResponse.statusCode
                 }
             });
         Volley.newRequestQueue(this).add(req);
     }
 }
-

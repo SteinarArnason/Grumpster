@@ -8,4 +8,5 @@
     <string name="title_activity_preferences">PreferencesActivity</string>
     <string name="create_group">New group name...</string>
     <string name="search_people">Search People</string>
+    <string name="title_activity_signup">SignupActivity</string>
 </resources>

@@ -1,36 +1,43 @@
 package grump.grumpster;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageView;
 
-public class MainActivity extends LoginActivity {
+public class MainActivity extends Activity {
+    SharedPreferences sp;
+    final String APIprefix = "http://ilovemetech.com/api/";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        sp = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
     }
     
     @Override
     protected void onResume() {
         super.onResume();
 
+        //Crashar einhverra hluta vegna, laga seinna
+        /*if(sp.getBoolean("loggedIn", false)) {
+            checkUserIcon();
+        }*/
+    }
+
+    public void login(View view) {
+        //TODO: set cookie
         SharedPreferences.Editor editor = sp.edit();
         editor.putBoolean("loggedIn", true);
         editor.commit();
-
-        if(!sp.getBoolean("loggedIn", false)) {
-            System.out.println("You are not logged in.");
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-        }
-        else {
-            System.out.println("You are logged in.");
-        }
-        checkUserIcon();
+        Intent intent = new Intent(this, MainActivity.class);
+        //Used to clear the activity stack
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
 
     }
 

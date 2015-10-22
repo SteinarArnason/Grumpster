@@ -53,6 +53,7 @@
         android:layout_height="wrap_content"
         android:text="Sign up"
         android:layout_marginTop="40dp"
+        android:onClick="signupHttp"
         android:id="@+id/button"
         android:layout_gravity="center_horizontal" />
 
