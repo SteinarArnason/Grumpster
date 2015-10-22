@@ -6,9 +6,13 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,6 +35,8 @@ public class GroupActivity extends Activity {
         setContentView(R.layout.creategroup_screen);
         listView = (ListView)findViewById(R.id.listview);
         editText = (EditText)findViewById(R.id.txtsearch);
+
+        listView.setOnItemClickListener(new ItemList());    //listens for click in userlist
         initList();
         editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -81,6 +87,16 @@ public class GroupActivity extends Activity {
         } else if (view.getId() == R.id.cancelGroup) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
+        }
+    }
+
+    class ItemList implements AdapterView.OnItemClickListener {
+
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            ViewGroup vg = (ViewGroup)view;
+            TextView tv = (TextView)vg.findViewById(R.id.txtitems);
+            Toast.makeText(GroupActivity.this, tv.getText().toString(), Toast.LENGTH_SHORT).show(); // here should we add the user to group...
         }
     }
 
