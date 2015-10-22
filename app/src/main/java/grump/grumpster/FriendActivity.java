@@ -1,6 +1,7 @@
 package grump.grumpster;
 
 import android.app.Activity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.android.volley.Request;
@@ -48,7 +49,28 @@ public class FriendActivity extends MainActivity{
 
     protected void addFriend(String friendToAdd){
         //má ekki breyta "notfound"
-        String myUsername = sp.getString("username", "notfound");
-        
+        String myUsername = sp.getString("uName", "notfound");
+        JSONObject myobj = new JSONObject();
+        try {
+            myobj.put("friend", friendToAdd);
+        } catch (JSONException e) {
+            System.out.println("Error: failed to create json object");
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest req = new JsonObjectRequest(APIprefix + "users/" + myUsername + "/friends", myobj,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        // hérna þarf að skipta um mynd
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        System.out.println("Error adding friend :  " +  error.getMessage());
+                    }
+                });
+        Volley.newRequestQueue(this).add(req);
     }
 }
