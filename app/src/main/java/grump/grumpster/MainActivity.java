@@ -41,6 +41,16 @@ public class MainActivity extends Activity {
 
     }
 
+    public void logout(View view) {
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putBoolean("loggedIn", false);
+        editor.commit();
+        Intent intent = new Intent(this, LoginActivity.class);
+        //Used to clear the activity stack
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+    }
+
     // checks if user has changed the icon in preference screen
     private void checkUserIcon() {
         ImageView image = (ImageView) findViewById(R.id.prefsButton);
