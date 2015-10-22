@@ -45,4 +45,10 @@ public class FriendActivity extends MainActivity{
         });
         Volley.newRequestQueue(this).add(jreq);
     }
+
+    protected void addFriend(String friendToAdd){
+        //má ekki breyta "notfound"
+        String myUsername = sp.getString("username", "notfound");
+        
+    }
 }

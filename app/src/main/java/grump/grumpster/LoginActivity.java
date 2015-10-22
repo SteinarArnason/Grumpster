@@ -58,7 +58,7 @@ public class LoginActivity extends MainActivity {
     }
 
     public void loginHttp(final View view){
-        String uName = user.getText().toString();
+        final String uName = user.getText().toString();
         String pWord = password.getText().toString();
 
         /**Harðkóðuð gögn til að auto logga sig inn (Þarf samt að ýta á login)*/
@@ -81,6 +81,8 @@ public class LoginActivity extends MainActivity {
                 @Override
                 public void onResponse(JSONObject response) {
                     login(view);
+                    SharedPreferences.Editor editor = sp.edit();
+                    editor.putString("username", uName);
                 }
             },
             new Response.ErrorListener() {
