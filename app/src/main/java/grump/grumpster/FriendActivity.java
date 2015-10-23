@@ -15,6 +15,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 /**
  * Created by Gunnar on 21-Oct-15.
  */
@@ -37,18 +39,23 @@ public class FriendActivity extends MainActivity{
             @Override
             public void onResponse(JSONArray response) {
                 System.out.println("Got response : "  + response.toString());
-                String string = new String(response.toString());
-                try {
-                    JSONArray arr = new JSONArray(string);
 
-                    JSONObject jObj = arr.getJSONObject(0);
-                    String user1 = jObj.getString("username");
-                    System.out.println("user1: " + user1);
+                int id;
+                String name;
+                ArrayList<String> usernames = new ArrayList<String>();
+                try {
+                    JSONArray array = new JSONArray(response.toString());
+
+                    for (int i = 0; i < array.length(); i++) {
+                        JSONObject row = array.getJSONObject(i);
+                        name = row.getString("username");
+                        usernames.add(name);
+                    }
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
 
-
+                System.out.println("this is usernames: " + usernames);
 
             }
         }, new Response.ErrorListener() {
