@@ -37,6 +37,19 @@ public class FriendActivity extends MainActivity{
             @Override
             public void onResponse(JSONArray response) {
                 System.out.println("Got response : "  + response.toString());
+                String string = new String(response.toString());
+                try {
+                    JSONArray arr = new JSONArray(string);
+
+                    JSONObject jObj = arr.getJSONObject(0);
+                    String user1 = jObj.getString("username");
+                    System.out.println("user1: " + user1);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+
+
             }
         }, new Response.ErrorListener() {
             @Override
