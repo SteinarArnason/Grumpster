@@ -3,6 +3,14 @@ package grump.grumpster;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -15,34 +23,39 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.security.acl.Group;
 import java.util.ArrayList;
+import java.util.Arrays;
 
-/**
- * Created by Gunnar on 21-Oct-15.
- */
 public class FriendActivity extends MainActivity{
+
+    ArrayList<String> usernames;
+    ArrayAdapter<String> adapter;
+    ListView listView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addfriend_screen);
+        listView = (ListView)findViewById(R.id.getUsers);
+        listView.setOnItemClickListener(new ItemList());
+        getAllUsers();
+        initlist();
+
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        System.out.println("asdfasdfasdf");
-        getAllUsers();
     }
 
+    // Gets response from API of all users in system.
     protected void getAllUsers() {
         JsonArrayRequest jreq=new JsonArrayRequest(APIprefix + "users", new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
-                System.out.println("Got response : "  + response.toString());
 
-                int id;
                 String name;
-                ArrayList<String> usernames = new ArrayList<String>();
                 try {
                     JSONArray array = new JSONArray(response.toString());
 
@@ -51,12 +64,10 @@ public class FriendActivity extends MainActivity{
                         name = row.getString("username");
                         usernames.add(name);
                     }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
-                System.out.println("this is usernames: " + usernames);
-
             }
         }, new Response.ErrorListener() {
             @Override
@@ -65,6 +76,13 @@ public class FriendActivity extends MainActivity{
             }
         });
         Volley.newRequestQueue(this).add(jreq);
+    }
+
+    // Populates list for this activity.
+    public void initlist() {
+        usernames = new ArrayList<>();
+        adapter = new ArrayAdapter<>(this, R.layout.list_item, R.id.txtitems, usernames);
+        listView.setAdapter(adapter);
     }
 
     protected void addFriend(String friendToAdd){
@@ -92,5 +110,14 @@ public class FriendActivity extends MainActivity{
                     }
                 });
         Volley.newRequestQueue(this).add(req);
+    }
+
+    class ItemList implements android.widget.AdapterView.OnItemClickListener {
+        @Override
+        public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+            ViewGroup vg = (ViewGroup)view;
+           // TextView tv = (TextView)vg.findViewById(R.id.username);
+           // Toast.makeText(FriendActivity.this, tv.getText().toString(),Toast.LENGTH_SHORT).show();
+        }
     }
 }
