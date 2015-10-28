@@ -125,6 +125,7 @@ public class FriendActivity extends MainActivity{
                     @Override
                     public void onResponse(JSONObject response) {
                         // hérna þarf að skipta um mynd
+                        System.out.println("i have just added friend " );
                     }
                 },
                 new Response.ErrorListener() {
@@ -140,8 +141,9 @@ public class FriendActivity extends MainActivity{
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
             ViewGroup vg = (ViewGroup)view;
-           // TextView tv = (TextView)vg.findViewById(R.id.username);
-           // Toast.makeText(FriendActivity.this, tv.getText().toString(),Toast.LENGTH_SHORT).show();
+            TextView tv = (TextView)vg.findViewById(R.id.txtitems);
+            addFriend(tv.getText().toString());
+            Toast.makeText(FriendActivity.this, tv.getText().toString(),Toast.LENGTH_SHORT).show();
         }
     }
 }
