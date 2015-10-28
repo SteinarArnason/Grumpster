@@ -3,6 +3,8 @@ package grump.grumpster;
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -32,15 +34,37 @@ public class FriendActivity extends MainActivity{
     ArrayList<String> usernames;
     ArrayAdapter<String> adapter;
     ListView listView;
+    EditText myFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.addfriend_screen);
         listView = (ListView)findViewById(R.id.getUsers);
+        myFilter = (EditText)findViewById(R.id.friendUsername);
+
+        listView.setTextFilterEnabled(true);
+
         listView.setOnItemClickListener(new ItemList());
         getAllUsers();
         initlist();
+
+        myFilter.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int i, int i1, int i2) {
+                adapter.getFilter().filter(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
     }
 
