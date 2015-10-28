@@ -8,15 +8,33 @@ import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.github.nkzawa.socketio.client.IO;
+import com.github.nkzawa.socketio.client.Socket;
+
+import java.net.URISyntaxException;
+
 public class MainActivity extends Activity {
     SharedPreferences sp;
     final String APIprefix = "http://ilovemetech.com/api/";
+    private Socket mSocket;
+    {
+        try {
+            System.out.println("trying to connect socket to server");
+            mSocket = IO.socket("http://ilovemetech.com");
+            System.out.println("msocket is : " + mSocket.toString());
+        } catch (URISyntaxException e) {
+            System.out.println("failed to create socket: ");
+            System.out.println(e.getMessage());
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         sp = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+        System.out.println("Should create socket");
+        mSocket.connect();
     }
     
     @Override
