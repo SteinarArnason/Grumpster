@@ -111,7 +111,9 @@ public class FriendActivity extends MainActivity{
 
     protected void addFriend(String friendToAdd){
         //má ekki breyta "notfound"
-        String myUsername = sp.getString("uName", "notfound");
+        String myUsername = sp.getString("username", "notfound");
+        System.out.println("My username " + myUsername);
+        System.out.println("Adding " + friendToAdd);
         JSONObject myobj = new JSONObject();
         try {
             myobj.put("friend", friendToAdd);

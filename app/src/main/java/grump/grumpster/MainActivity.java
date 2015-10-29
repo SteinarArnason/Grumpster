@@ -10,6 +10,7 @@ import android.widget.ImageView;
 
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
+import com.github.nkzawa.emitter.Emitter;
 
 import java.net.URISyntaxException;
 

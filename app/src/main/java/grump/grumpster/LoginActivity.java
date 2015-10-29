@@ -83,6 +83,7 @@ public class LoginActivity extends MainActivity {
                     login(view);
                     SharedPreferences.Editor editor = sp.edit();
                     editor.putString("username", uName);
+                    editor.commit();
                 }
             },
             new Response.ErrorListener() {
