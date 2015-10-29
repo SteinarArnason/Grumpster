@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
@@ -16,8 +17,10 @@ import java.net.URISyntaxException;
 
 public class MainActivity extends Activity {
     SharedPreferences sp;
+    String myUsername;
     final String APIprefix = "http://ilovemetech.com/api/";
     private Socket mSocket;
+
     {
         try {
             System.out.println("trying to connect socket to server");
@@ -36,8 +39,16 @@ public class MainActivity extends Activity {
         sp = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
         System.out.println("Should create socket");
         mSocket.connect();
+        myUsername = sp.getString("username", "notfound");
+        displayUser();
     }
-    
+
+    // displays the "Welcome User" message
+    private void displayUser() {
+        TextView userTextView = (TextView) findViewById(R.id.welcomeUser);
+        userTextView.setText("Welcome " + myUsername);
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
