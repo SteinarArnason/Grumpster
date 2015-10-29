@@ -34,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Welcome GrumpyPerson"
-        android:id="@+id/textView"
+        android:id="@+id/welcomeUser"
         android:layout_alignTop="@+id/Logo"
         android:layout_centerHorizontal="true" />
 
